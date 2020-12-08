@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Library.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">librery</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Library.java</span></div><h1>Library.java</h1><pre class="source lang-java linenums">
+import java.util.*;
+
+public class Library {
+    Map&lt;String,Book&gt; bookList;
+
+<span class="nc" id="L7">    public Library(Map&lt;String,Book&gt; bookList) {</span>
+<span class="nc" id="L8">        this.bookList = bookList;</span>
+<span class="nc" id="L9">    }</span>
+
+<span class="fc" id="L11">    public Library() {</span>
+<span class="fc" id="L12">        this.bookList = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L13">    }</span>
+
+    public Book takeBook(String title) {
+<span class="fc" id="L16">        return bookList.get(title);</span>
+    }
+
+    public int addBook(Book bookToAdd) {
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        if (bookList.get(bookToAdd.getTitle()) == null) {</span>
+<span class="fc" id="L21">            bookList.put(bookToAdd.getTitle(), bookToAdd);</span>
+<span class="fc" id="L22">            return 0;</span>
+        }
+<span class="fc" id="L24">        return -1;</span>
+    }
+
+    public int deleteBook(String bookToDelete) {
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        if (bookList.remove(bookToDelete)!=null)</span>
+<span class="fc" id="L29">            return 0;</span>
+<span class="fc" id="L30">        return -1;</span>
+
+    }
+
+    public Map&lt;String,Book&gt; getBookList() {
+<span class="fc" id="L35">        return bookList;</span>
+    }
+
+    public Book buyBook(String title, float price) {
+<span class="nc" id="L39">        return takeBook(title);</span>
+
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
