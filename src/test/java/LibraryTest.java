@@ -6,12 +6,15 @@ import static org.hamcrest.CoreMatchers.not;
 
 public class LibraryTest {
 
-    private static Library library;
-    private Book book;
+    private  static Library library;
+    private  Book book;
 
-    @BeforeEach
-    public  void setup() {
+
+    private LibraryTest(){
         library = new Library();
+    }
+    @BeforeEach
+    public   void setup() {
         book = new Book("titolo1","autore1",400,"categoria1",42);
         Book book2 = new Book("titolo2", "autore2", 40, "categoria2", 412);
         library.addBook(book);
@@ -57,8 +60,18 @@ public class LibraryTest {
 
     }
 
-    @AfterAll
-    public static void tearDown(){
+    @Test
+    public void addBookTest() {
+       Book bookToAdd = new Book("titolo42","autore42",400,"categoria42",42);
+       library.addBook(bookToAdd);
+       Book book3 = library.getBookList().get(bookToAdd.getTitle());
+       Assertions.assertEquals(bookToAdd, book3);
+
+
+    }
+
+    @AfterEach
+    public  void tearDown(){
         library = null;
     }
 }

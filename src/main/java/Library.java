@@ -17,7 +17,7 @@ public class Library {
     }
 
     public int addBook(Book bookToAdd) {
-        if (bookList.get(bookToAdd.getTitle()) != null) {
+        if (bookList.get(bookToAdd.getTitle()) == null) {
             bookList.put(bookToAdd.getTitle(), bookToAdd);
             return 0;
         }
@@ -36,9 +36,7 @@ public class Library {
     }
 
     public Book buyBook(String title, float price) {
-        Book book = takeBook(title);
-        if (book != null)
-            return book.getPrice() <= price ? book : null;
-        return null;
+        return takeBook(title);
+
     }
 }
