@@ -1,6 +1,11 @@
 language: java
-sudo: false
-script:
-  - ./mvn clean install
-  - bash <(curl -s https://codecov.io/bash)
-install: true
+jdk:
+  - openjdk8
+
+script: ./mvnw clean install
+
+
+jobs:
+  include:
+    - stage: Test
+      script: ./mvnw clean test
