@@ -1,20 +1,27 @@
+# Travis CI Java documentation can be found in:
+# https://docs.travis-ci.com/user/languages/java/
+
+# We will use Ubuntu 18.04 (bionic beaver). List of options:
+# https://docs.travis-ci.com/user/reference/overview/#linux
+dist: xenial
+
+# This enables the 'defaults' to test java applications:
 language: java
+
+# We can specify a list of JDKs to be used for testing
+# A list of available JDKs in Trusty can be seed in:
+# https://docs.travis-ci.com/user/reference/xenial/#jvm-clojure-groovy-java-scala-support
 jdk:
   - openjdk8
+  - openjdk11
 
+# Each job in Travis CI has several steps:
+# https://docs.travis-ci.com/user/job-lifecycle/
+# The 'language: java' directive sets up sane defaults to test common java applications
+# We use the defaults for installing dependencies, compiling and testing maven applications
+# In our case it will be 'mvn install' followed by 'mvn test'
 
-
-cache:
-  directories:
-    - "$HOME/.m2"
-install:
-  - curl -o $HOME/.m2/settings.xml
-    https://raw.githubusercontent.com/trajano/trajano/master/src/site/resources/settings.xml
-  - mvn dependency:go-offline
-script:
-  - mvn clean install site
-  - script: ./mvnw clean install
-jobs:
-  include:
-    - stage: Test
-      script: ./mvnw clean test
+# This is to enable CodeCov's coverage
+# If a build is successful, the code is submitted for coverage analysis
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
